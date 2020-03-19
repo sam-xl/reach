@@ -280,11 +280,13 @@ void ReachStudy::runInitialReachStudy()
       goal_state.position = solution;
       auto msg = makeRecord(std::to_string(i), true, tgt_pose, seed_state, goal_state, *score);
       db_->put(msg);
+      ROS_DEBUG("Valid IK Solution found");
     }
     else
     {
       auto msg = makeRecord(std::to_string(i), false, tgt_pose, seed_state, goal_state, 0.0);
       db_->put(msg);
+      ROS_DEBUG("NO IK Solution found");
     }
 
     // Print function progress
